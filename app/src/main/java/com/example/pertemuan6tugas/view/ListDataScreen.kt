@@ -112,6 +112,7 @@ fun FormulirScreen(
 
             Spacer(modifier = Modifier.height(16.dp))
 
+            // Tombol Submit
             Button(
                 onClick = {
                     // Buat objek Peserta baru
@@ -135,3 +136,26 @@ fun FormulirScreen(
     }
 }
 
+// Helper Composable untuk Radio Button
+@Composable
+fun RowScope.RadioOption(
+    text: String,
+    selected: Boolean,
+    onClick: () -> Unit
+) {
+    Row(
+        Modifier
+            .selectable(
+                selected = selected,
+                onClick = onClick
+            )
+            .padding(end = 16.dp),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        RadioButton(
+            selected = selected,
+            onClick = onClick
+        )
+        Text(text)
+    }
+}
