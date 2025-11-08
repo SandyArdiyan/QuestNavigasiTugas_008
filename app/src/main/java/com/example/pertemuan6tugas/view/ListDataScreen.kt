@@ -66,6 +66,7 @@ fun ListDataScreen(
     }
 }
 
+// Composable terpisah untuk satu kartu peserta (sesuai desain di gambar)
 @Composable
 fun PesertaCard(peserta: Peserta) {
     Card(
@@ -92,3 +93,18 @@ fun PesertaCard(peserta: Peserta) {
     }
 }
 
+@Composable
+fun InfoLabel(label: String, value: String) {
+    Column {
+        Text(
+            text = label,
+            style = MaterialTheme.typography.labelSmall,
+            color = MaterialTheme.colorScheme.primary
+        )
+        Text(
+            text = value,
+            style = MaterialTheme.typography.bodyLarge,
+            fontWeight = FontWeight.Bold
+        )
+    }
+}
