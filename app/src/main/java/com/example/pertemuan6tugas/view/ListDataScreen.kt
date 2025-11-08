@@ -56,7 +56,6 @@ fun FormulirScreen(
                 modifier = Modifier.fillMaxWidth()
             )
 
-            // Grup Radio Button untuk Jenis Kelamin
             Column {
                 Text("Jenis Kelamin", style = MaterialTheme.typography.bodyLarge)
                 Row(Modifier.fillMaxWidth()) {
@@ -72,4 +71,43 @@ fun FormulirScreen(
                     )
                 }
             }
+
+            ExposedDropdownMenuBox(
+                expanded = expanded,
+                onExpandedChange = { expanded = !expanded }
+            ) {
+                OutlinedTextField(
+                    value = statusPerkawinan,
+                    onValueChange = {},
+                    readOnly = true,
+                    label = { Text("Status Perkawinan") },
+                    trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+                    modifier = Modifier
+                        .fillMaxWidth()
+                        .menuAnchor()
+                )
+                ExposedDropdownMenu(
+                    expanded = expanded,
+                    onDismissRequest = { expanded = false }
+                ) {
+                    statusList.forEach { status ->
+                        DropdownMenuItem(
+                            text = { Text(status) },
+                            onClick = {
+                                statusPerkawinan = status
+                                expanded = false
+                            }
+                        )
+                    }
+                }
+            }
+
+            OutlinedTextField(
+                value = alamat,
+                onValueChange = { alamat = it },
+                label = { Text("Alamat") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            Spacer(modifier = Modifier.height(16.dp))
 
