@@ -29,4 +29,47 @@ fun FormulirScreen(
     var expanded by remember { mutableStateOf(false) }
     val statusList = listOf("Lajang", "Kawin", "Cerai")
 
-    }
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Formulir Pendaftaran") },
+                colors = TopAppBarDefaults.topAppBarColors( // <-- SEKARANG SUDAH AMAN
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary
+                )
+            )
+        }
+    ) { innerPadding ->
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding)
+                .padding(16.dp)
+                .verticalScroll(rememberScrollState()),
+            verticalArrangement = Arrangement.spacedBy(16.dp)
+        ) {
+
+            OutlinedTextField(
+                value = nama,
+                onValueChange = { nama = it },
+                label = { Text("Nama Lengkap") },
+                modifier = Modifier.fillMaxWidth()
+            )
+
+            // Grup Radio Button untuk Jenis Kelamin
+            Column {
+                Text("Jenis Kelamin", style = MaterialTheme.typography.bodyLarge)
+                Row(Modifier.fillMaxWidth()) {
+                    RadioOption(
+                        text = "Laki-Laki",
+                        selected = jenisKelamin == "Laki-Laki",
+                        onClick = { jenisKelamin = "Laki-Laki" }
+                    )
+                    RadioOption(
+                        text = "Perempuan",
+                        selected = jenisKelamin == "Perempuan",
+                        onClick = { jenisKelamin = "Perempuan" }
+                    )
+                }
+            }
+
