@@ -49,3 +49,46 @@ fun ListDataScreen(
                 }
             }
         }
+    ) { innerPadding ->
+        LazyColumn(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(innerPadding) // Terapkan padding dari Scaffold
+                .padding(horizontal = 16.dp),
+            verticalArrangement = Arrangement.spacedBy(12.dp),
+            contentPadding = PaddingValues(vertical = 16.dp)
+        ) {
+            // Gunakan 'items' untuk menampilkan data dari pesertaList
+            items(pesertaList) { peserta ->
+                PesertaCard(peserta = peserta)
+            }
+        }
+    }
+}
+
+@Composable
+fun PesertaCard(peserta: Peserta) {
+    Card(
+        modifier = Modifier.fillMaxWidth(),
+        elevation = CardDefaults.cardElevation(defaultElevation = 4.dp)
+    ) {
+        Row(
+            modifier = Modifier
+                .fillMaxWidth()
+                .padding(16.dp),
+            horizontalArrangement = Arrangement.SpaceBetween
+        ) {
+            // Kolom Kiri
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                InfoLabel("NAMA LENGKAP", peserta.nama)
+                InfoLabel("STATUS PERKAWINAN", peserta.statusPerkawinan)
+            }
+            // Kolom Kanan
+            Column(verticalArrangement = Arrangement.spacedBy(8.dp)) {
+                InfoLabel("JENIS KELAMIN", peserta.jenisKelamin)
+                InfoLabel("ALAMAT", peserta.alamat)
+            }
+        }
+    }
+}
+
