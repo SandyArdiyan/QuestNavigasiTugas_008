@@ -72,6 +72,7 @@ fun FormulirScreen(
                 }
             }
 
+            // Dropdown untuk Status Perkawinan
             ExposedDropdownMenuBox(
                 expanded = expanded,
                 onExpandedChange = { expanded = !expanded }
@@ -110,4 +111,27 @@ fun FormulirScreen(
             )
 
             Spacer(modifier = Modifier.height(16.dp))
+
+            Button(
+                onClick = {
+                    // Buat objek Peserta baru
+                    val pesertaBaru = Peserta(
+                        nama = nama,
+                        jenisKelamin = jenisKelamin,
+                        statusPerkawinan = statusPerkawinan,
+                        alamat = alamat
+                    )
+                    // Tambahkan ke ViewModel
+                    viewModel.tambahPeserta(pesertaBaru)
+
+                    // Kembali ke layar sebelumnya
+                    onNavigateBack()
+                },
+                modifier = Modifier.fillMaxWidth()
+            ) {
+                Text("SUBMIT DATA")
+            }
+        }
+    }
+}
 
