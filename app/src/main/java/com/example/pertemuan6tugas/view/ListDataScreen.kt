@@ -22,3 +22,30 @@ fun ListDataScreen(
 ) {
     val pesertaList = viewModel.pesertaList
 
+    Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("List Daftar Peserta") },
+                colors = TopAppBarDefaults.topAppBarColors(
+                    containerColor = MaterialTheme.colorScheme.primaryContainer,
+                    titleContentColor = MaterialTheme.colorScheme.primary
+                )
+            )
+        },
+        bottomBar = {
+            BottomAppBar(
+                containerColor = MaterialTheme.colorScheme.primaryContainer
+            ) {
+                Row(
+                    modifier = Modifier.fillMaxWidth(),
+                    horizontalArrangement = Arrangement.SpaceEvenly
+                ) {
+                    Button(onClick = onHomeClick) {
+                        Text("Beranda")
+                    }
+                    Button(onClick = onFormClick) {
+                        Text("Formulir")
+                    }
+                }
+            }
+        }
